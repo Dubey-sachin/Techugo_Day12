@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 
-export const sendemail= async ()=>{
+export const sendemail= async (to ,text,subject)=>{
 
     let transporter= nodemailer.createTransport({
         service:"gmail",
@@ -12,9 +12,9 @@ export const sendemail= async ()=>{
 
     let info = await transporter.sendMail({
         from:process.env.MY_EMAIL,
-        to:process.env.RECIEVERS_EMAIL,
-        subject:"message ",
-        text:"hello "
+        to:to,
+        subject:subject,
+        text:text
     })
     console.log("Email sent ",info.messageId);
 
