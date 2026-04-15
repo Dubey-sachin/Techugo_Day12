@@ -17,6 +17,8 @@ export const createAdmin = async () => {
       email: process.env.ADMIN_EMAIL,
       password: hashedPassword,
       role: "admin",
+      permissions:{
+      }
     });
     await admin.save();
 

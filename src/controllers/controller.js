@@ -33,7 +33,7 @@ export const createEmployee = async (req, res) => {
 
   try {
     console.log(req.body);
-    const { userName, email, password, permission } = req.body;
+    const { userName, email, password, permissions } = req.body;
    const existing= await User.findOne({email});
    if(existing)
    {
@@ -46,7 +46,7 @@ export const createEmployee = async (req, res) => {
     email,
     password:hashedPassword,
     role:"employee",
-   
+    permissions:permissions
    })
    await employee.save();
 
@@ -93,11 +93,17 @@ export const deleteEmployee = async(req,res)=>{
 // update employee
 
 export const updatePassword = async (req, res) => {
-  try {
+  try {  
+
+      if(req.user.id===req.params.id )
+      {
+        return res.json({message:"wrong Users"})
+      }
+
         const { password } = req.body;
         const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.findOneAndUpdate(
-      { userName: req.params.name },
+      { userName: req.params.id },
       { password: hashedPassword },
       { returnDocument: 'after' }
     );

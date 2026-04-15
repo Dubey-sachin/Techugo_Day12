@@ -11,9 +11,9 @@ router.get('/abc',(req,res)=>{
     res.json({message: "hello"})
 })
  
-router.post('/create', authenticate, authorize("module_1","write","admin"), createEmployee)
-router.get('/getEmployees',authenticate,authorize("module_1","read","admin","employee","user"),getAllEmployee)
-router.delete('/delete/:name',authenticate,authorize("module_2","write","admin"),deleteEmployee)
-router.put('/update/:name',authenticate,authorize("module_3","write","admin","employee"),updatePassword)
+router.post('/create', authenticate, authorize(), createEmployee)
+router.get('/getEmployees',authenticate,authorize(),getAllEmployee)
+router.delete('/delete/:name',authenticate,authorize(),deleteEmployee)
+router.put('/update/:name',authenticate,authorize(),updatePassword)
  
 export default router;

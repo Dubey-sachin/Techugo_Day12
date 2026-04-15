@@ -9,20 +9,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     enum: ["admin", "employee", "user"],
   },
-   permission: {
-    module_1: {
-      read: { type: Boolean, default: true },
-      write: { type: Boolean, default: true }
-    },
-    module_2: {
-      read: { type: Boolean, default: true },
-      write: { type: Boolean, default: true }
-    },
-    module_3: {
-      read: { type: Boolean, default: true },
-      write: { type: Boolean, default: true }
-    }
-  }
+   permissions: {
+    type: Object,
+    default:{}
+   }
 });
 
 const User=mongoose.model('User',userSchema);
